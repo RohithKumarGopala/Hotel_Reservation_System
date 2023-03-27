@@ -3,10 +3,20 @@ package com.hotelReservation;
 public class HotelReservationSystem {
     private String hotelName;
     private int rates;
+    private float weekendRate;
 
-    public HotelReservationSystem(String hotelName, int rates) {
+    public float getWeekendRate() {
+        return weekendRate;
+    }
+
+    public void setWeekendRate(float weekendRate) {
+        this.weekendRate = weekendRate;
+    }
+
+    public HotelReservationSystem(String hotelName, int rates, float weekendRate) {
         this.hotelName = hotelName;
         this.rates = rates;
+        this.weekendRate = weekendRate;
     }
 
     public HotelReservationSystem() {
