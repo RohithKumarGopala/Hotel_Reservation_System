@@ -9,7 +9,7 @@ public class HotelRunner {
 
         System.out.println("Welcome to Hotel Reservation System");
 
-        HotelRunner application = new HotelRunner();
+        Runner application = new Runner();
         application.provideUserOption();
     }
 
@@ -51,11 +51,24 @@ public class HotelRunner {
         String checkInDate = scanner.next();
         System.out.println("Enter check-Out Date : (dd/mm/yyyy)");
         String checkOutDate = scanner.next();
+
+        String Day1 = CheapestHotel.findDayOfWeek(checkInDate);
+        String Day2 = CheapestHotel.findDayOfWeek(checkOutDate);
+
         int days = CheapestHotel.findDateDifference(checkInDate, checkOutDate);
-        System.out.println("Number of days stying in hotel " +days);
-        HotelReservationSystem cheapestHotel = HotelReservationSystem.findCheapestHotel(days);
+        System.out.println("Number of days stying in hotel " + days);
+
+        HotelReservationSystem cheapestHotel = CheapestHotel.findCheapestHotel(days);
         float totalRate = cheapestHotel.getRates() * days;
-        System.out.println("Cheapest hotel is " + cheapestHotel.getHotelName() + " having rate $ " + totalRate);
+
+        HotelReservationSystem cheapestHote2 = CheapestHotel.findCheapestHotel(days);
+        float totalWeekendRate = cheapestHotel.getWeekendRate() * 2;
+
+        if (Day1.equalsIgnoreCase("Saturday") | Day1.equalsIgnoreCase("Sunday") | Day2.equalsIgnoreCase("Saturday") | Day2.equalsIgnoreCase("Sunday")) {
+            System.out.println("Best hotel availble on weekend  " + cheapestHotel.getHotelName() + " having rate $" + totalWeekendRate);
+        } else {
+            System.out.println("Cheapest hotel is " + cheapestHotel.getHotelName() + " having rate $" + totalRate);
+        }
     }
 }
 
